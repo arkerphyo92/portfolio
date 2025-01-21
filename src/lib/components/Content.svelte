@@ -1,11 +1,58 @@
 <script lang="ts">
 	import TypedElement from './TypedElement.svelte';
+	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
+
 	let typedStrings = [
 		'Full-Stack Developer',
 		'Designer',
 		'Python and JavaScript Developer',
 		'Project Manager'
 	];
+
+	const name = writable('');
+	const email = writable('');
+	const subject = writable('');
+	const message = writable('');
+	const errorMessage = writable('');
+	const successMessage = writable('');
+
+	async function handleSubmit(event) {
+		event.preventDefault();
+		errorMessage.set('');
+		successMessage.set('');
+
+		const formData = {
+			user_name: $name,
+			user_email: $email,
+			message: $message,
+			to: 'arkar'
+		};
+
+		try {
+			const response = await fetch('https://api.khantzay.com/api/contact-form', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(formData)
+			});
+
+			const result = await response.json();
+
+			if (response.ok) {
+				successMessage.set('Your message has been sent. Thank you!');
+				name.set('');
+				email.set('');
+				subject.set('');
+				message.set('');
+			} else {
+				errorMessage.set(result.error || 'Failed to send message. Please try again later.');
+			}
+		} catch (error) {
+			errorMessage.set('Failed to send message. Please try again later.');
+		}
+	}
 </script>
 
 <main class="main">
@@ -762,39 +809,32 @@
 				</div>
 
 				<div class="col-lg-7">
-					<form
-						action="forms/contact.php"
-						method="post"
-						class="php-email-form"
-						data-aos="fade-up"
-						data-aos-delay="200"
-					>
+						<form on:submit={handleSubmit} class="php-email-form" data-aos="fade-up" data-aos-delay="200">
 						<div class="row gy-4">
 							<div class="col-md-6">
 								<label for="name-field" class="pb-2">Your Name</label>
-								<input type="text" name="name" id="name-field" class="form-control" />
+								<input type="text" name="name" id="name-field" class="form-control" bind:value={$name} />
 							</div>
 
 							<div class="col-md-6">
 								<label for="email-field" class="pb-2">Your Email</label>
-								<input type="email" class="form-control" name="email" id="email-field" />
+								<input type="email" class="form-control" name="email" id="email-field" bind:value={$email} />
 							</div>
 
 							<div class="col-md-12">
 								<label for="subject-field" class="pb-2">Subject</label>
-								<input type="text" class="form-control" name="subject" id="subject-field" />
+								<input type="text" class="form-control" name="subject" id="subject-field" bind:value={$subject} />
 							</div>
 
 							<div class="col-md-12">
 								<label for="message-field" class="pb-2">Message</label>
-								<textarea class="form-control" name="message" rows="10" id="message-field"
-								></textarea>
+								<textarea class="form-control" name="message" rows="10" id="message-field" bind:value={$message}></textarea>
 							</div>
 
 							<div class="col-md-12 text-center">
 								<div class="loading">Loading</div>
-								<div class="error-message"></div>
-								<div class="sent-message">Your message has been sent. Thank you!</div>
+								<div class="error-message">{$errorMessage}</div>
+								<div class="sent-message">{$successMessage}</div>
 
 								<button type="submit">Send Message</button>
 							</div>
