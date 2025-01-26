@@ -1,18 +1,14 @@
-name: Update Sitemap
+name: Sitemap Update
 
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - "sitemap.xml"  # Trigger only when sitemap.xml is updated
   pull_request:
     branches: [ "main" ]
-    paths:
-      - "sitemap.xml"  # Trigger only for PRs affecting sitemap.xml
 
 jobs:
-  update_sitemap:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest  # Specify the GitHub-hosted runner
 
     steps:
     - name: Checkout repository
@@ -40,4 +36,4 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add sitemap.xml
         git commit -m "Update <lastmod> in sitemap.xml [skip-sitemap]"
-        git push https://x-access-token:${{ secrets.portfoliositemap }}@github.com/arkerphyo92/portfolio.git HEAD:main
+        git push https://x-access-token:${{ secrets.SITEMAP }}@github.com/arkerphyo92/portfolio.git HEAD:main
