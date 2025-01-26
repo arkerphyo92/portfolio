@@ -3,6 +3,18 @@
 	import TypedElement from './TypedElement.svelte';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
+	import { onDestroy } from 'svelte';
+
+	let isActive = false; // To track the visibility of the scroll button
+	let scrollTop;
+
+	// This function scrolls to the top smoothly
+	function scrollToTop() {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	}
 	let typedStrings = [
 		'Full-Stack Developer',
 		'Designer',
@@ -86,6 +98,17 @@
 		if (skillsSection) {
 			observer.observe(skillsSection);
 		}
+
+		const handleScroll = () => {
+			isActive = window.scrollY > 100;
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		// Cleanup the event listener when the component is destroyed
+		onDestroy(() => {
+			window.removeEventListener('scroll', handleScroll);
+		});
 	});
 </script>
 
@@ -304,18 +327,13 @@
 		<!-- Section Title -->
 		<div class="section-title container" data-aos="fade-up">
 			<h2>Resume</h2>
-			<p>
-				Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem.
-				Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit
-				alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
-			</p>
 		</div>
 		<!-- End Section Title -->
 
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-					<h3 class="resume-title">Sumary</h3>
+					<!-- <h3 class="resume-title">Sumary</h3>
 
 					<div class="resume-item pb-0">
 						<h4>Brandon Johnson</h4>
@@ -331,7 +349,7 @@
 							<li>(123) 456-7891</li>
 							<li>alice.barkley@example.com</li>
 						</ul>
-					</div>
+					</div> -->
 					<!-- Edn Resume Item -->
 
 					<h3 class="resume-title">Education</h3>
@@ -372,29 +390,20 @@
 					<h3 class="resume-title">Professional Experience</h3>
 					<div class="resume-item">
 						<h4>Full-Stack Web Developer</h4>
-						<h5>2024 - Present</h5>
-						<p><em>HexCode Tech, Bangkok, Thailand </em></p>
+						<h5><em>HexCode Tech, Bangkok, Thailand </em> ( 2024 - Present )</h5>
+						<p></p>
 						<ul>
 							<li>
-								Develop, test, and maintain web applications using Django, Litestar (Python),
-								SvelteKit(JS) and ReactJS.
-							</li>
-							<li>Design and implement robust, scalable, and secure RESTful APIs.</li>
-							<li>
-								Collaborate with AI developers and other team members to integrate user-facing
-								elements with server-side logic.
+								Develop and maintain scalable web applications using Django, Litestar (Python),
+								SvelteKit, and ReactJS, including secure and optimized RESTful APIs.
 							</li>
 							<li>
-								Optimize applications for maximum speed and scalability and Implement security and
-								data protection measures.
+								Collaborate with teams to integrate front-end and server-side logic, ensuring robust
+								performance and security.
 							</li>
 							<li>
-								Troubleshoot and debug applications to ensure optimal performance. Participate in
-								code reviews and contribute to best practices and coding standards.
-							</li>
-							<li>
-								Stay current with the latest developments and trends in Django, SvelteKit and
-								related technologies.
+								Troubleshoot, optimize, and stay updated with the latest trends to deliver
+								high-quality, modern web solutions.
 							</li>
 						</ul>
 					</div>
@@ -402,31 +411,38 @@
 
 					<div class="resume-item">
 						<h4>Project Coordinator (Acting as Project Manager)</h4>
-						<h5>2022 - 2024</h5>
-						<p><em>Myanmar Information Technology, Yangon, Myanmar</em></p>
+						<h5><em>Myanmar Information Technology, Yangon, Myanmar</em> ( 2022 - 2024 )</h5>
 						<ul>
 							<li>
-								Collaborated with cross-functional teams to develop software products and deliver
-								scoped system modules and functionalities.
+								Coordinated cross-functional teams to deliver enterprise-level banking software
+								projects on time and within scope.
 							</li>
 							<li>
-								Managed project planning, resources, and execution to ensure on-time delivery of
-								medium to large-scale projects.
+								Managed planning, resources, and stakeholder communications, providing updates,
+								reports, and post-delivery support.
 							</li>
 							<li>
-								Led stakeholder meetings, aligned project objectives, and adapted scope as needed to
-								meet business goals.
+								Scheduled meetings, tracked progress, optimized efficiency, and conducted system
+								training to ensure seamless customer experiences.
+							</li>
+						</ul>
+					</div>
+					<!-- Edn Resume Item -->
+					<div class="resume-item">
+						<h4>IT Officer</h4>
+						<h5><em>Myanmar Customs Department</em> ( 2017 - 2022 )</h5>
+						<ul>
+							<li>
+								Served as IT Officer for Myanmar Customs Department, managing ASEAN Single Window
+								and National Single Window systems.
 							</li>
 							<li>
-								Created and presented technical reports and project updates to working groups and
-								steering committees. Provided post-delivery consulting and technical support,
-								ensuring seamless customer experiences.
+								Resolved technical issues, led system installations, managed user accounts, and
+								facilitated cross-border XML data exchanges with ASEAN Member States.
 							</li>
 							<li>
-								Monitored project schedules, work hours, and expenditures to optimize
-								efficiency.Provide software/system training for customers o Regularly report project
-								status through Weekly and Monthly updates. Schedule and facilitate meetings,
-								preparing meeting minutes
+								Represented Myanmar Customs in ASEAN PMO meetings, overseeing IT tasks, mentoring
+								junior staff, and ensuring seamless regional collaboration.
 							</li>
 						</ul>
 					</div>
@@ -442,11 +458,7 @@
 		<!-- Section Title -->
 		<div class="section-title container" data-aos="fade-up">
 			<h2>Portfolio</h2>
-			<p>
-				Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem.
-				Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit
-				alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
-			</p>
+			<p>This is my own portfolio section.</p>
 		</div>
 		<!-- End Section Title -->
 
@@ -515,7 +527,6 @@
 		<!-- Section Title -->
 		<div class="section-title container" data-aos="fade-up">
 			<h2>Contact</h2>
-			<p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
 		</div>
 		<!-- End Section Title -->
 
@@ -631,9 +642,14 @@
 </footer>
 
 <!-- Scroll Top -->
-<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
-	><i class="bi bi-arrow-up-short"></i></a
+<a
+	id="scroll-top"
+	class="scroll-top d-flex align-items-center justify-content-center {isActive ? 'active' : ''}"
+	on:click|preventDefault={scrollToTop}
+	bind:this={scrollTop}
 >
+	<i class="bi bi-arrow-up-short"></i>
+</a>
 
 <!-- Preloader -->
 <!-- <div id="preloader"></div> -->
