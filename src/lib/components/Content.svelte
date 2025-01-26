@@ -155,14 +155,10 @@
 				</div>
 				<div class="col-lg-8 content">
 					<h2>Full Stack Web Developer.</h2>
-					<p class="fst-italic py-3">This is my Biography</p>
+					<p>&nbsp;</p>
 					<div class="row">
 						<div class="col-lg-6">
 							<ul>
-								<li>
-									<i class="bi bi-chevron-right"></i> <strong>Birthday:</strong>
-									<span>8<sup>th</sup> November 1992</span>
-								</li>
 								<li>
 									<i class="bi bi-chevron-right"></i> <strong>Website:</strong>
 									<span>www.akphyo.com</span>
@@ -179,7 +175,6 @@
 						</div>
 						<div class="col-lg-6">
 							<ul>
-								<li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>32</span></li>
 								<li>
 									<i class="bi bi-chevron-right"></i> <strong>Email:</strong>
 									<span>arkerphyo92@gmail.com</span>
