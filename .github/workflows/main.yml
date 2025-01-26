@@ -1,0 +1,43 @@
+name: Update Sitemap
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "sitemap.xml"  # Trigger only when sitemap.xml is updated
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "sitemap.xml"  # Trigger only for PRs affecting sitemap.xml
+
+jobs:
+  update_sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Check for the [skip-sitemap] in commit message
+    - name: Check Commit Message for Skip Sitemap
+      id: check_message
+      run: |
+        if git log -1 --pretty=format:%s | grep -q "\[skip-sitemap\]"; then
+          echo "Commit contains [skip-sitemap]. Exiting."
+          exit 0
+        fi
+
+    # Step to Update <lastmod> in sitemap.xml
+    - name: Update <lastmod> in sitemap.xml
+      run: |
+        CURRENT_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        sed -i "s|<lastmod>.*</lastmod>|<lastmod>${CURRENT_DATE}</lastmod>|g" sitemap.xml
+
+    # Commit and Push the updated sitemap.xml
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add sitemap.xml
+        git commit -m "Update <lastmod> in sitemap.xml [skip-sitemap]"
+        git push https://x-access-token:${{ secrets.portfoliositemap }}@github.com/arkerphyo92/portfolio.git HEAD:main
