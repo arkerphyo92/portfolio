@@ -390,7 +390,7 @@
 					<h3 class="resume-title">Professional Experience</h3>
 					<div class="resume-item">
 						<h4>Full-Stack Web Developer</h4>
-						<h5><em>HexCode Tech, Bangkok, Thailand </em> ( 2024 - Present )</h5>
+						<h5><em>HexCode Tech, Bangkok, Thailand. </em> ( 2024 - Present )</h5>
 						<p></p>
 						<ul>
 							<li>
