@@ -57,7 +57,7 @@
 
 	<!-- Profile Image -->
 	<div class="profile-img">
-		<img src="/src/lib/img/arkarphyo-profile.jpg" alt="Profile" class="img-fluid rounded-circle" />
+		<img src="/lib/img/arkarphyo-profile.jpg" alt="Profile" class="img-fluid rounded-circle" />
 	</div>
 
 	<!-- Logo -->

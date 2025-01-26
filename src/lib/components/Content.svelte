@@ -115,7 +115,7 @@
 <main class="main">
 	<!-- Hero Section -->
 	<section id="hero" class="hero section dark-background">
-		<img src="src/lib/img/arkarphyo.jpg" alt="" data-aos="fade-in" class="" />
+		<img src="/lib/img/arkarphyo.jpg" alt="" data-aos="fade-in" class="" />
 
 		<div class="container" data-aos="fade-up" data-aos-delay="100">
 			<h2>ARKAR PHYO</h2>
@@ -151,7 +151,7 @@
 		<div class="container" data-aos="fade-up" data-aos-delay="100">
 			<div class="row gy-4 justify-content-center">
 				<div class="col-lg-4">
-					<img src="src/lib/img/arkarphyo-bio.jpg" class="img-fluid" alt="" />
+					<img src="/lib/img/arkarphyo-bio.jpg" class="img-fluid" alt="" />
 				</div>
 				<div class="col-lg-8 content">
 					<h2>Full Stack Web Developer.</h2>
@@ -474,7 +474,7 @@
 				<div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 					<div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
 						<div class="portfolio-content h-100">
-							<img src="src/lib/img/portfolio/Divergent.jpg" class="img-fluid" alt="" />
+							<img src="/lib/img/portfolio/Divergent.jpg" class="img-fluid" alt="" />
 							<div class="portfolio-info">
 								<!-- <h4>App 1</h4> -->
 								<p>Lorem ipsum, dolor sit amet consectetur</p>
@@ -485,7 +485,7 @@
 
 					<div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
 						<div class="portfolio-content h-100">
-							<img src="src/lib/img/portfolio/Fashion153.jpg" class="img-fluid" alt="" />
+							<img src="/lib/img/portfolio/Fashion153.jpg" class="img-fluid" alt="" />
 							<div class="portfolio-info">
 								<!-- <h4>Product 1</h4> -->
 								<p>Lorem ipsum, dolor sit amet consectetur</p>
@@ -496,7 +496,7 @@
 
 					<div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
 						<div class="portfolio-content h-100">
-							<img src="src/lib/img/portfolio/Mega24.jpg" class="img-fluid" alt="" />
+							<img src="/lib/img/portfolio/Mega24.jpg" class="img-fluid" alt="" />
 							<div class="portfolio-info">
 								<!-- <h4>Branding 1</h4> -->
 								<p>Lorem ipsum, dolor sit amet consectetur</p>
@@ -507,7 +507,7 @@
 
 					<div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
 						<div class="portfolio-content h-100">
-							<img src="src/lib/img/portfolio/MMtender.jpg" class="img-fluid" alt="" />
+							<img src="/lib/img/portfolio/MMtender.jpg" class="img-fluid" alt="" />
 							<div class="portfolio-info">
 								<!-- <h4>Books 1</h4> -->
 								<p>Lorem ipsum, dolor sit amet consectetur</p>
@@ -642,14 +642,15 @@
 </footer>
 
 <!-- Scroll Top -->
-<a
+<button
 	id="scroll-top"
 	class="scroll-top d-flex align-items-center justify-content-center {isActive ? 'active' : ''}"
+	aria-label="Scroll to top"
 	on:click|preventDefault={scrollToTop}
 	bind:this={scrollTop}
 >
 	<i class="bi bi-arrow-up-short"></i>
-</a>
+</button>
 
 <!-- Preloader -->
 <!-- <div id="preloader"></div> -->
