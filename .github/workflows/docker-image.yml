@@ -1,0 +1,47 @@
+name: SITEMAP_UPDATE
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Specify the GitHub-hosted runner
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Check for the [skip-sitemap] in commit message
+    - name: Check Commit Message for Skip Sitemap
+      id: check_message
+      run: |
+        if git log -1 --pretty=format:%s | grep -q "\[skip-sitemap\]"; then
+          echo "Commit contains [skip-sitemap]. Exiting."
+          exit 0
+        fi
+
+    # Step to Update <lastmod> in sitemap.xml
+    - name: Update <lastmod> in sitemap.xml
+      run: |
+        CURRENT_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        sed -i "s|<lastmod>.*</lastmod>|<lastmod>${CURRENT_DATE}</lastmod>|g" sitemap.xml
+
+    # Check if <lastmod> was replaced
+    - name: Check for `<lastmod>` replacement
+      run: |
+        if ! grep -q "<lastmod>" sitemap.xml; then
+          echo "Error: <lastmod> not found in sitemap.xml"
+          exit 1
+        fi
+
+    # Commit and Push Changes
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "s"
+        git config --global user.email "khantzay.ly@gmail.com"
+        git add sitemap.xml
+        git commit -m "Update sitemap <lastmod> with current date"
+        git push https://x-access-token:${{secrets.AK_PORTFOLIO}}@github.com/arkerphyo92/portfolio.git HEAD:main
