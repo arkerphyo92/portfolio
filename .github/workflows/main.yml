@@ -1,18 +1,14 @@
-name: Update Sitemap
+name: Sitemap Update
 
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - "sitemap.xml"  # Trigger only when sitemap.xml is updated
   pull_request:
     branches: [ "main" ]
-    paths:
-      - "sitemap.xml"  # Trigger only for PRs affecting sitemap.xml
 
 jobs:
-  update_sitemap:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest  # Specify the GitHub-hosted runner
 
     steps:
     - name: Checkout repository
