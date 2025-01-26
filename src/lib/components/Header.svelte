@@ -62,7 +62,7 @@
 
 	<!-- Logo -->
 	<a href="/" class="logo d-flex align-items-center justify-content-center">
-		<h1 class="sitename">Arkar Phyo</h1>
+		<h1 class="sitename">Arkar Phyo @ AK</h1>
 	</a>
 
 	<!-- Social Links -->

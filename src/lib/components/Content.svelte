@@ -188,6 +188,10 @@
 									<i class="bi bi-chevron-right"></i> <strong>Freelance:</strong>
 									<span>Available</span>
 								</li>
+								<li>
+									<i class="bi bi-chevron-right"></i> <strong>Languages:</strong>
+									<span>English, Myanmar</span>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -203,7 +207,6 @@
 		<!-- Section Title -->
 		<div class="section-title container" data-aos="fade-up">
 			<h2>Skills</h2>
-			<p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
 		</div>
 		<!-- End Section Title -->
 
