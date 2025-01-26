@@ -1,4 +1,4 @@
-name: Sitemap Update
+name: SITEMAP_UPDATE
 
 on:
   push:
@@ -22,13 +22,11 @@ jobs:
           echo "Commit contains [skip-sitemap]. Exiting."
           exit 0
         fi
-
     # Step to Update <lastmod> in sitemap.xml
     - name: Update <lastmod> in sitemap.xml
       run: |
         CURRENT_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
         sed -i "s|<lastmod>.*</lastmod>|<lastmod>${CURRENT_DATE}</lastmod>|g" sitemap.xml
-
     # Commit and Push the updated sitemap.xml
     - name: Commit and Push Changes
       run: |
@@ -36,4 +34,4 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add sitemap.xml
         git commit -m "Update <lastmod> in sitemap.xml [skip-sitemap]"
-        git push https://x-access-token:${{ secrets.AK_PORTFOLIO }}@github.com/arkerphyo92/portfolio.git HEAD:main
+        git push git push https://x-access-token:${{ secrets.AK_PORTFOLIO }}@github.com/arkerphyo92/portfolio.git HEAD:main
